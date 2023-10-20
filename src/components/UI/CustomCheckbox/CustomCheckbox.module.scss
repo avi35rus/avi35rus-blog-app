@@ -1,0 +1,17 @@
+.customCheckboxContainer {
+	label {
+		display: flex;
+
+		input[type="checkbox"] {
+			margin-right: 8px;
+			width: 20px;
+			height: 20px;
+		}
+	}
+
+	.errorMessage {
+		color: rgba(245, 34, 45, 1);
+		font-size: 14px;
+		line-height: 22px;
+	}
+}

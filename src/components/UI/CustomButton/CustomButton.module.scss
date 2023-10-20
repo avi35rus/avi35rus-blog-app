@@ -1,0 +1,78 @@
+.сustomButton {
+	border: 1px solid;
+
+	&.signInButton,
+	&.signUpButton,
+	&.logOutButton {
+		border-radius: 5px;
+		line-height: 28px;
+		font-size: 18px;
+		padding: 8px 16px;
+	}
+
+	&.signInButton {
+		border-color: rgba(255, 255, 255, 1);
+		color: rgba(0, 0, 0, 0.85);
+	}
+
+	&.signUpButton,
+	&.createArticleButton,
+	&.editArticleButton {
+		border-color: rgba(82, 196, 26, 1);
+		color: rgba(82, 196, 26, 1);
+	}
+
+	&.logOutButton {
+		border-color: rgba(0, 0, 0, 0.75);
+		color: rgba(0, 0, 0, 0.75);
+	}
+
+	&.submitButton {
+		color: rgba(255, 255, 255, 1);
+		line-height: 24px;
+
+		background-color: rgba(24, 144, 255, 1);
+		border-radius: 4px;
+
+		padding: 8px 0;
+	}
+
+	&.createArticleButton {
+		font-size: 14px;
+		line-height: 22px;
+
+		border-radius: 5px;
+		padding: 4px 10px;
+	}
+
+	&.addTagButton,
+	&.deleteTagButton {
+		font-size: 16px;
+		line-height: 18px;
+
+		padding: 8px 40px;
+		margin-top: 3px;
+
+		border-radius: 4px;
+	}
+
+	&.addTagButton {
+		border-color: rgba(24, 144, 255, 1);
+		color: rgba(24, 144, 255, 1);
+	}
+
+	&.deleteTagButton,
+	&.deleteArticleButton {
+		border-color: rgba(245, 34, 45, 1);
+		color: rgba(245, 34, 45, 1);
+	}
+
+	&.deleteArticleButton, 
+	&.editArticleButton {
+		border-radius: 5px;
+		padding: 4px 18px;
+
+		font-size: 14px;
+		line-height: 22px;
+	}
+}

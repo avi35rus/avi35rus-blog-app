@@ -1,0 +1,37 @@
+.customInput {
+	display: flex;
+	flex-direction: column;
+	gap: 2px;
+
+	span {
+		color: rgba(38, 38, 38, 1);
+		font-size: 14px;
+		line-height: 22px;
+	}
+
+	input,
+	textarea {
+		width: 100%;
+		padding: 8px 12px;
+		border: 1px solid rgba(217, 217, 217, 1);
+		border-radius: 4px;
+
+		&::placeholder {
+			color: rgba(191, 191, 191, 1);
+		}
+	}
+
+	.invalidInput{
+		border: 1px solid rgba(245, 34, 45, 1);
+	}
+
+	.errorMessage {
+		color: rgba(245, 34, 45, 1);
+		font-size: 14px;
+		line-height: 22px;
+	}
+
+	.createArticleBody {
+		height: 168px;
+	}
+}
