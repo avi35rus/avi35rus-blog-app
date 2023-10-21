@@ -1,2 +1,2 @@
 Ссылка на развернутое приложение:
-<br/>https://blog-l34wiod62-avi35rus.vercel.app
+<br/>https://blog-hy3qrxnky-avi35rus.vercel.app/
