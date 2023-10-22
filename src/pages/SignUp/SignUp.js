@@ -24,7 +24,7 @@ const SignUp = () => {
 		},
 	})
 
-	const [registerUser, isRegisterLoading, registerError] = useFetching(async (data) => {
+	const [registerUser, , registerError] = useFetching(async (data) => {
 		await BlogService.registerUser(data)
 	})
 

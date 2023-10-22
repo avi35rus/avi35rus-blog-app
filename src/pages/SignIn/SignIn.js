@@ -23,7 +23,7 @@ const SignIn = () => {
 		},
 	})
 
-	const [loginUser, isLoginLoading, loginError] = useFetching(async (data) => {
+	const [loginUser, , loginError] = useFetching(async (data) => {
 		const response = await BlogService.loginUser(data)
 		dispatch(login(response.user))
 	})

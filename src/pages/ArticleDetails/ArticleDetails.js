@@ -11,15 +11,16 @@ const ArticleDetails = () => {
 	const history = useHistory()
 	const [article, setArticle] = useState(null)
 	const userData = useSelector((state) => state.auth.user)
+	const token = userData ? userData.token : null
 
 	const [fetchArticle] = useFetching(async () => {
-		const articleData = await BlogService.getArticle(slug, userData.token)
+		const articleData = await BlogService.getArticle(slug, token)
 
 		setArticle(articleData)
 	})
 
 	const [deleteArticle] = useFetching(async () => {
-		await BlogService.deleteArticle(slug, userData.token)
+		await BlogService.deleteArticle(slug, token)
 		history.push('/')
 	})
 

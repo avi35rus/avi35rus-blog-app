@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import { useForm, useFieldArray } from 'react-hook-form'
 import { useSelector } from 'react-redux'
 import { useHistory, useParams } from 'react-router-dom'
@@ -30,7 +30,7 @@ const EditArticle = () => {
 
 	const { fields, append, remove } = useFieldArray({ control, name: 'tagList' })
 
-	const [fetchArticle, isFetchLoading, fetchError] = useFetching(async (slug) => {
+	const [fetchArticle] = useFetching(async (slug) => {
 		const articleData = await BlogService.getArticle(slug)
 		reset(articleData)
 	})

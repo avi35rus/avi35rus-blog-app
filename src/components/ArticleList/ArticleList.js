@@ -11,10 +11,8 @@ import classes from './ArticleList.module.scss'
 
 const ArticleList = () => {
 	const dispatch = useDispatch()
-	const articles = useSelector((state) => state.articles.articles)
-	const currentPage = useSelector((state) => state.articles.currentPage)
-	const articlesPerPage = useSelector((state) => state.articles.articlesPerPage)
-	const totalArticlesCount = useSelector((state) => state.articles.totalArticlesCount)
+	const articlesData = useSelector((state) => state.articles)
+	const { articles, currentPage, articlesPerPage, totalArticlesCount } = articlesData
 	const userData = useSelector((state) => state.auth.user)
 	const token = userData ? userData.token : null
 
