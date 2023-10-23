@@ -25,7 +25,8 @@ const App = () => {
 					<AppHeader />
 					<main className="main">
 						<Switch>
-							<Route path="/" exact component={ArticleList} />
+							<Route path="/" component={ArticleList} exact />
+							<Route path="/articles" component={ArticleList} exact />
 							<Route path="/articles/:slug" component={ArticleDetails} exact />
 							<PublicRoute path="/sign-in" component={SignIn} />
 							<PublicRoute path="/sign-up" component={SignUp} />

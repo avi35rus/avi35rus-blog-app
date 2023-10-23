@@ -11,7 +11,7 @@ import BlogService from '../../API/BlogService'
 
 const EditArticle = () => {
 	const history = useHistory()
-	const userToken = useSelector((state) => state.auth.user.token)
+	const currentUser = useSelector((state) => state.auth.user)
 	const { slug } = useParams()
 
 	const {
@@ -33,10 +33,14 @@ const EditArticle = () => {
 	const [fetchArticle] = useFetching(async (slug) => {
 		const articleData = await BlogService.getArticle(slug)
 		reset(articleData)
+
+		if (articleData.author.username !== currentUser.username) {
+			history.push(`/articles/${slug}`)
+		}
 	})
 
 	const [updateArticle, isUpdateLoading, updateError] = useFetching(async (data) => {
-		await BlogService.updateArticle(slug, data, userToken)
+		await BlogService.updateArticle(slug, data, currentUser.token)
 		history.push(`/articles/${slug}`)
 	})
 
