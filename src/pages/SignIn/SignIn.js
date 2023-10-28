@@ -23,7 +23,7 @@ const SignIn = () => {
 		},
 	})
 
-	const [loginUser, , loginError] = useFetching(async (data) => {
+	const [loginUser, isLoginLoading, loginError] = useFetching(async (data) => {
 		const response = await BlogService.loginUser(data)
 		dispatch(login(response.user))
 	})
@@ -64,7 +64,7 @@ const SignIn = () => {
 				}}
 			/>
 
-			<CustomButton name={'Login'} className={'submitButton'} type="submit" />
+			<CustomButton name={'Login'} className={'submitButton'} type="submit" disabled={isLoginLoading} />
 		</CustomAuthForm>
 	)
 }

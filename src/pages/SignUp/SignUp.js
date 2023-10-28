@@ -24,7 +24,7 @@ const SignUp = () => {
 		},
 	})
 
-	const [registerUser, , registerError] = useFetching(async (data) => {
+	const [registerUser, isRegisterLoading, registerError] = useFetching(async (data) => {
 		await BlogService.registerUser(data)
 	})
 
@@ -107,7 +107,7 @@ const SignUp = () => {
 				error={errors.agree}
 			/>
 
-			<CustomButton name={'Create'} className={'submitButton'} type="submit" />
+			<CustomButton name={'Create'} className={'submitButton'} type="submit" disabled={isRegisterLoading} />
 
 			<p>
 				Already have an account? <Link to="/sign-in">Sign In</Link>.

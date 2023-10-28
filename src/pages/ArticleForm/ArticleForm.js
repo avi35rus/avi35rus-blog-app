@@ -1,7 +1,7 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useForm, useFieldArray } from 'react-hook-form'
 import { useSelector } from 'react-redux'
-import { useHistory } from 'react-router-dom'
+import { useHistory, useParams } from 'react-router-dom'
 
 import CustomInput from '../../components/UI/CustomInput'
 import CustomArticleForm from '../../components/UI/CustomArticleForm'
@@ -9,14 +9,16 @@ import CustomButton from '../../components/UI/CustomButton'
 import { useFetching } from '../../hooks/useFetching'
 import BlogService from '../../API/BlogService'
 
-const CreateArticle = () => {
+const ArticleForm = () => {
 	const history = useHistory()
-	const userToken = useSelector((state) => state.auth.user.token)
+	const currentUser = useSelector((state) => state.auth.user)
+	const { slug } = useParams()
 
 	const {
 		handleSubmit,
 		control,
 		formState: { errors },
+		reset,
 	} = useForm({
 		defaultValues: {
 			title: '',
@@ -27,11 +29,27 @@ const CreateArticle = () => {
 	})
 
 	const { fields, append, remove } = useFieldArray({ control, name: 'tagList' })
+	const [isEditing, setIsEditing] = useState(false)
 
 	const [createArticle, isCreateLoading, createError] = useFetching(async (data) => {
-		const response = await BlogService.createArticle(data, userToken)
+		const response = await BlogService.createArticle(data, currentUser.token)
 
 		history.push(`/articles/${response.article.slug}`)
+	})
+
+	const [fetchArticle] = useFetching(async (slug) => {
+		const articleData = await BlogService.getArticle(slug)
+		reset(articleData)
+
+		if (articleData.author.username !== currentUser.username) {
+			history.push(`/articles/${slug}`)
+		}
+		setIsEditing(true)
+	})
+
+	const [updateArticle, isUpdateLoading] = useFetching(async (data) => {
+		await BlogService.updateArticle(slug, data, currentUser.token)
+		history.push(`/articles/${slug}`)
 	})
 
 	const handleAddTag = () => {
@@ -42,12 +60,18 @@ const CreateArticle = () => {
 		remove(index)
 	}
 
+	const onSubmit = isEditing ? updateArticle : createArticle
+
 	useEffect(() => {
-		handleAddTag()
-	}, [])
+		if (slug) {
+			fetchArticle(slug)
+		} else {
+			handleAddTag()
+		}
+	}, [slug])
 
 	return (
-		<CustomArticleForm title={'Create new article'} onSubmit={handleSubmit(createArticle)}>
+		<CustomArticleForm title={isEditing ? 'Edit Article' : 'Create new article'} onSubmit={handleSubmit(onSubmit)}>
 			<CustomInput
 				name="title"
 				label="Title"
@@ -122,9 +146,14 @@ const CreateArticle = () => {
 				)}
 			</div>
 
-			<CustomButton name={'Send'} className={'submitButton'} type="submit" disabled={isCreateLoading} />
+			<CustomButton
+				name={isEditing ? 'Update' : 'Send'}
+				className={'submitButton'}
+				type="submit"
+				disabled={isEditing ? isUpdateLoading : isCreateLoading}
+			/>
 		</CustomArticleForm>
 	)
 }
 
-export default CreateArticle
+export default ArticleForm

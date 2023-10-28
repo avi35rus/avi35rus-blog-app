@@ -105,7 +105,7 @@ const EditProfile = () => {
 				}}
 			/>
 
-			<CustomButton name={'Save'} className={'submitButton'} type="submit" />
+			<CustomButton name={'Save'} className={'submitButton'} type="submit" disabled={isUpdateLoading} />
 		</CustomAuthForm>
 	)
 }

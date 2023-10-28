@@ -8,8 +8,7 @@ import ArticleDetails from '../pages/ArticleDetails'
 import SignIn from '../pages/SignIn'
 import SignUp from '../pages/SignUp'
 import EditProfile from '../pages/EditProfile'
-import CreateArticle from '../pages/CreateArticle'
-import EditArticle from '../pages/EditArticle'
+import ArticleForm from '../pages/ArticleForm'
 import store from '../redux/store'
 
 import PrivateRoute from './Routes/PrivateRoute'
@@ -31,8 +30,8 @@ const App = () => {
 							<PublicRoute path="/sign-in" component={SignIn} />
 							<PublicRoute path="/sign-up" component={SignUp} />
 							<PrivateRoute path="/profile" component={EditProfile} />
-							<PrivateRoute path="/new-article" component={CreateArticle} />
-							<PrivateRoute path="/articles/:slug/edit" component={EditArticle} />
+							<PrivateRoute path="/new-article" component={ArticleForm} />
+							<PrivateRoute path="/articles/:slug/edit" component={ArticleForm} />
 						</Switch>
 					</main>
 				</div>
